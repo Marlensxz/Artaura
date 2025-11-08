@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>О нас - Галерея искусств</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #8b5a2b;
+            --text-color: #333333;
+            --light-bg: #f5f5f5;
+            --dark-bg: #1a1a1a;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gold: #d4af37;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-bg);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 5px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--gold);
+        }
+
+        nav {
+            background: rgba(255, 255, 255, 0.97);
+            padding: 1.2rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            transition: all 0.4s ease;
+        }
+
+        .nav-scrolled {
+            padding: 0.8rem 0;
+            background: rgba(26, 26, 26, 0.95);
+        }
+
+        .nav-scrolled .nav-links a {
+            color: white;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .header {
+            background: url('image3.jpg') center/cover no-repeat fixed;
+            color: white;
+            padding: 8rem 0 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2.5rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            animation: fadeIn 1.5s ease-in-out;
+        }
+
+        .header-content::before {
+            content: '';
+            position: absolute;
+            top: -3px;
+            left: -3px;
+            right: -3px;
+            bottom: -3px;
+            border: 1px solid var(--gold);
+            border-radius: 17px;
+            opacity: 0.6;
+            z-index: -1;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .header h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+            color: #fff;
+            position: relative;
+            display: inline-block;
+        }
+
+        .header h1::after {
+            content: '';
+            position: absolute;
+            width: 60%;
+            height: 2px;
+            background: var(--gold);
+            bottom: -10px;
+            left: 20%;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.95;
+            max-width: 800px;
+            margin: 2rem auto 0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.7);
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .about-section {
+            background: white;
+            border-radius: 15px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeIn 0.8s forwards;
+        }
+
+        .about-section:nth-child(1) {
+            animation-delay: 0.3s;
+        }
+
+        .about-section:nth-child(2) {
+            animation-delay: 0.6s;
+        }
+
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold), var(--accent-color));
+        }
+
+        .about-section h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-color);
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-section h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 2px;
+            background: var(--accent-color);
+            bottom: -8px;
+            left: 0;
+        }
+
+        .about-section p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            transition: var(--transition);
+            max-width: 350px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .team-member img {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            margin-bottom: 1.5rem;
+            object-fit: cover;
+            border: 3px solid var(--accent-color);
+            transition: var(--transition);
+        }
+
+        .team-member:hover img {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .team-member h3 {
+            font-family: 'Cormorant Garamond', serif;
+            margin-bottom: 0.5rem;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+        }
+
+        .team-member p {
+            color: var(--text-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .team-member .social-links {
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 100%;
+            background: var(--accent-color);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 3rem;
+            width: 45%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 55%;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 20px;
+            height: 20px;
+            background: var(--gold);
+            border-radius: 50%;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -60px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -60px;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--dark-bg), #000);
+            color: white;
+            padding: 5rem 0 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            color: #fff;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -0.5rem;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            padding-left: 0.5rem;
+            color: var(--gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-color);
+            transform: translateY(-5px) rotate(360deg);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            margin-top: 3rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--accent-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        @media (max-width: 992px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+            }
+            
+            .timeline-item:nth-child(odd),
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item:nth-child(odd::before,
+            .timeline-item:nth-child(even)::before {
+                left: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2.8rem;
+            }
+
+            .header p {
+                font-size: 1.1rem;
+            }
+
+            .about-section {
+                padding: 2rem;
+            }
+            
+            .team-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-palette"></i> Галерея искусств
+            </a>
+            <div class="nav-links">
+                <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+                <a href="gallery.html"><i class="fas fa-images"></i> Галерея</a>
+                <a href="about.html"><i class="fas fa-info-circle"></i> О нас</a>
+                <a href="contact.html"><i class="fas fa-envelope"></i> Контакты</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="header">
+        <div class="header-content">
+            <h1><i class="fas fa-info-circle"></i> О нашей галерее</h1>
+            <p>Узнайте больше о нашей миссии, истории и команде энтузиастов искусства</p>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="about-section">
+            <h2>Наша миссия</h2>
+            <p>Мы стремимся сделать искусство доступным для каждого, создавая уникальное пространство, где классические шедевры встречаются с современным цифровым опытом. Наша галерея - это место, где история искусства оживает, где каждый посетитель может погрузиться в мир красоты и вдохновения.</p>
+            <p>Мы тщательно отбираем каждое произведение искусства, чтобы предоставить вам самые значимые и впечатляющие работы мировых художников. Наша коллекция постоянно пополняется, позволяя вам открывать для себя новые грани искусства.</p>
+            
+            <h2>Наша команда</h2>
+            <div class="team-grid">
+    <div class="team-member">
+        <img src="images/curator1.jpg" alt="Главный куратор">
+        <h3>Марат Әділет</h3>
+        <p>Главный куратор</p>
+        <p style="font-weight: normal; font-size: 0.95rem;">Әділет имеет степень магистра истории искусств и более 5 лет опыта работы в ведущих галереях мира. Его страсть к искусству и глубокие знания делают нашу коллекцию по-настоящему уникальной.</p>
+        <div class="social-links">
+            <a href="https://github.com/Marlensxz" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/adil.marl/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://t.me/Marlensiz" target="_blank"><i class="fab fa-telegram"></i></a>
+        </div>
+    </div>
+    <div class="team-member">
+        <img src="images/placeholder-female.jpg" alt="Шаттык">
+        <h3>Шаттык</h3>
+        <p>Специалист по коммуникациям</p>
+        <p style="font-weight: normal; font-size: 0.95rem;">Шаттык отвечает за связь с нашими посетителями и партнерами, создавая теплую и гостеприимную атмосферу в галерее. Ее опыт в организации мероприятий помогает нам проводить незабываемые выставки.</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+    <div class="team-member">
+        <img src="images/placeholder-female-2.jpg" alt="Назерке">
+        <h3>Назерке</h3>
+        <p>Арт-консультант</p>
+        <p style="font-weight: normal; font-size: 0.95rem;">Назерке обладает глубокими знаниями в области современного искусства и всегда готова помочь посетителям с выбором произведений, а также рассказать увлекательные истории о художниках и их творениях.</p>
+        <div class="social-links">
+            <a href="#" target="_blank"><i class="fab fa-behance"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fas fa-briefcase"></i></a>
+        </div>
+    </div>
+</div>
+
