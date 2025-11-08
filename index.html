@@ -172,7 +172,12 @@
             top: 0;
             width: 100%;
             z-index: 100;
-            transition: all 0.4s ease;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.4s ease, padding 0.4s ease;
+            transform: translateY(0);
+        }
+        
+        nav.hide {
+            transform: translateY(-100%);
         }
 
         .nav-scrolled {
@@ -284,6 +289,17 @@
             transition: var(--transition);
             text-align: center;
             border: 1px solid rgba(0,0,0,0.05);
+            opacity: 1 !important; /* Ensure cards are always visible */
+            transform: translateY(0) !important; /* Reset any transform */
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .feature-card:hover {
@@ -573,38 +589,32 @@
         <i class="fas fa-arrow-up"></i>
     </a>
 
+    <!-- Include navigation behavior script -->
+    <script src="js/nav-behavior.js"></script>
+    
+    <!-- Back to top button behavior -->
     <script>
-        // Изменение навигации при скролле
-        window.addEventListener('scroll', function() {
-            const navbar = document.getElementById('navbar');
+        document.addEventListener('DOMContentLoaded', function() {
             const backToTop = document.getElementById('backToTop');
-            
-            if (window.scrollY > 100) {
-                navbar.classList.add('nav-scrolled');
-                backToTop.classList.add('show');
-            } else {
-                navbar.classList.remove('nav-scrolled');
-                backToTop.classList.remove('show');
+            if (backToTop) {
+                window.addEventListener('scroll', function() {
+                    if (window.scrollY > 300) {
+                        backToTop.style.opacity = '1';
+                        backToTop.style.visibility = 'visible';
+                    } else {
+                        backToTop.style.opacity = '0';
+                        backToTop.style.visibility = 'hidden';
+                    }
+                });
+
+                backToTop.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
             }
-            
-            // Анимация элементов при скролле
-            const fadeElements = document.querySelectorAll('.fade-in');
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const windowHeight = window.innerHeight;
-                if (elementTop < windowHeight - 100) {
-                    element.classList.add('appear');
-                }
-            });
-        });
-        
-        // Плавная прокрутка наверх
-        document.getElementById('backToTop').addEventListener('click', function(e) {
-            e.preventDefault();
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
         });
     </script>
 </body>
